@@ -10,3 +10,7 @@ Here is the Downloads page, I downloaded both the Selenium Stand Alone Server, t
 http://docs.seleniumhq.org/download/
 
 http://docs.seleniumhq.org/projects/ide/
+
+Here is another useful resource:
+
+http://selenium-python.readthedocs.org/
