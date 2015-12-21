@@ -8,20 +8,25 @@ import logging
 class GoogleSearch(object):
 
     def __init__(self):
+        #sets up for script to run on Firefox browser
         self.driver = webdriver.Firefox()
+        #this part sets up the logging module storing info level logs onto a log file and adding a time stamp
         logging.basicConfig(filename="search.log", level=logging.INFO, format=' %(asctime)s - %(levelname)s- %(message)s')
         logging.info("START")
 
     def search_item(self, item):
+        #this part dictates what page the browser should open
         self.driver.get("https://www.google.com/")
         logging.info("This is google.com")
         print(self.driver.title)
+        #this part finds search bar, sends in item name (ex. ruby) and submits search
         search_bar = self.driver.find_element_by_name("q")
         search_bar.send_keys(item)
         logging.info("typed %s into the search bar", item)
         search_bar.submit()
 
     def python_page(self):
+        #WebDriverWait explicitly tells the driver to hold out for 10 seconds before it times out. This is done because the automation sometimes goes by too quickly. We have to wait until the page and items you need to move onto the next step are on the page.
         try:
             WebDriverWait(self.driver, 10).until(EC.title_contains("python"))
             print(self.driver.title)
@@ -38,6 +43,7 @@ class GoogleSearch(object):
             logging.error("Did not find header class name in python.org site")
         print(self.driver.title)
 
+    #These code language methods are clicking on specific websites that are shown with each item search result
     def ruby_page(self):
         try:
             WebDriverWait(self.driver, 10).until(EC.title_contains("ruby"))
@@ -107,6 +113,7 @@ class GoogleSearch(object):
         print(self.driver.title)
 
     def close(self):
+        #This just closes the browser once the script has run its course.
         self.driver.close()
 
 if __name__ == "__main__":
